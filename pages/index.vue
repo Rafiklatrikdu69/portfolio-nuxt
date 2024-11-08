@@ -2,6 +2,7 @@
 definePageMeta({
     layout: 'nav'
 })
+
 const items = [{
     name: 'Rafik Bouchenna',
     to: 'https://github.com/Atinux',
