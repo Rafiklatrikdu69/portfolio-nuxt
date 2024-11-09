@@ -7,4 +7,4 @@ if (!supabaseUrl || !supabaseKey) {
   throw new Error("Supabase URL or Key is missing in environment variables");
 }
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+export const supabase = createClient(supabaseUrl, supabaseKey,{ db: { schema: 'portfolio' } });
