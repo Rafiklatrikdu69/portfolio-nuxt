@@ -2,13 +2,16 @@
 definePageMeta({
     layout: 'nav'
 })
-const { data: projets, error } = await useFetch('/api/projets')
+const { data: projets } = await useFetch('/api/projets')
 console.log(JSON.stringify(projets))
+
+
+
 </script>
 <template>
     
     <main class="container">
-        <h1>Mes projets</h1>
+        <h1 class="w-full text-center font-normal text-2xl color">Mes projets</h1>
         <div class="projets">
             <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
         </div>
@@ -18,8 +21,12 @@ console.log(JSON.stringify(projets))
     </main>
 </template>
 <style scoped>
-
-
+.color{
+    color: #0066FF;
+}
+.container{
+    padding: 20px;
+}
 .projets {
     margin: 20px;
     display: grid;

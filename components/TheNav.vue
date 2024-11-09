@@ -228,7 +228,8 @@ const closeMenu = () => {
     right: 0;
     z-index: 9999;
     background-color: white;
-    padding: 10px;    
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 10px;    
   }
 
   .flex-logo {
