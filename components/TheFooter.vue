@@ -12,17 +12,21 @@ const links = [{
 </script>
 
 <template>
-   
-   <footer>
+  
+  <footer>
     <p class=" w-full text-center">
-        &copy; {{ new Date().getFullYear() }} Rafiki. All rights reserved.
+      &copy; {{ new Date().getFullYear() }} Rafiki. All rights reserved.
     </p>
-   </footer>
+  </footer>
 </template>
 <style scoped>
 footer {
-    bottom: 0;
-    position: sticky;
-    height: auto;
-    }
+  bottom: 0;
+  position: sticky;
+  height: auto;
+}
+p{
+  padding: 26px;
+}
+
 </style>

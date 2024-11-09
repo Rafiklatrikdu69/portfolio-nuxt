@@ -50,8 +50,6 @@ const redirectToTechnologies = () =>{
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    flex-wrap: wrap;
 }
 
 .presentation {
@@ -66,7 +64,7 @@ const redirectToTechnologies = () =>{
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-    padding: 5%;
+    padding: 2%;
 }
 
 /* Animation de l'image */

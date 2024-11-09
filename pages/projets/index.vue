@@ -11,17 +11,6 @@ console.log(JSON.stringify(projets))
         <h1>Mes projets</h1>
         <div class="projets">
             <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
-            <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
-            <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
-            <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
-            <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
-            <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
-            <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
-            <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
-            <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
-            <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
-            <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
-            <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
         </div>
         <div>
             <TheFooter />

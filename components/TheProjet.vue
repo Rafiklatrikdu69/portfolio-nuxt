@@ -41,6 +41,7 @@ figure {
     filter: blur(3px);
     -webkit-transition: filter 0.3s ease-in-out;
     transition: filter 0.3s ease-in-out;
+    border-radius: 10px;
 }
 
 .hover07 figure:hover img {
