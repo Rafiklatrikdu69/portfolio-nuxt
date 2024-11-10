@@ -75,7 +75,6 @@ const closeMenu = () => {
       </span>
     </div>
 
-    <!-- Nav Fixe en Haut -->
     
     <nav class="nav">
       <div class="flex-logo">
@@ -180,10 +179,8 @@ const closeMenu = () => {
 
 .sidenav a {
   padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
   display: block;
-  transition: color 0.3s;
+  transition: color 0.4s;
 }
 
 .sidenav ul {

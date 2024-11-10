@@ -5,10 +5,9 @@ export default defineEventHandler(async (event) => {
     const client = await serverSupabaseClient(event);   
 
     const { data ,error} = await client.schema('portfolio').from('projet').select(`
-      id, 
-      nom, 
-      technologie ( id, name )
+      *,
+      technologie ( id, name,image )
     `).eq('id', id)
-    return data
+    return data[0]
   })
   

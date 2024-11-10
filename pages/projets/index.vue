@@ -22,7 +22,7 @@ console.log(JSON.stringify(projets))
 </template>
 <style scoped>
 .color{
-    color: #0066FF;
+font-weight: bold;
 }
 .container{
     padding: 20px;

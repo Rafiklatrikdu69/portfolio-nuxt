@@ -6,6 +6,7 @@ definePageMeta({
 </script>
 <template>
     <main>
+        <h1>Page en cours de développement</h1>
         <TheFooter />
     </main>
 

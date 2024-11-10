@@ -1,12 +1,15 @@
 <script setup>
 defineProps(['projet'])
+
 </script>
 
 <template>
     <UCard>
         <div class="image-container hover07">
             <figure>
-                <img :src="`img/${projet.image}`" alt="Project Image" />
+                <NuxtLink :to="`/projets/${projet.id}`">
+                    <img :src="`img/${projet.image}`" alt="Project Image" />
+                </NuxtLink>
             </figure>
         </div>
     </UCard>
