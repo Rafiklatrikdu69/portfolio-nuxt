@@ -3,10 +3,6 @@ definePageMeta({
     layout: 'nav'
 })
 const { data: projets } = await useFetch('/api/projets')
-console.log(JSON.stringify(projets))
-
-
-
 </script>
 <template>
     

@@ -1,8 +1,8 @@
 <template>
   <UContainer class="w-full flex items-center justify-between">
     <div class="flex items-center justify-center gap-2">
-      <img src="/img/logo.png" class="image" alt="logo"/>
-      <UToggle  v-model="isDark"  on-icon="i-heroicons-sun" off-icon="i-heroicons-moon" size="lg"/>
+      <img src="public/img/logo.png" class="image" alt="logo"/>
+      <UToggle  v-model="isDark"  on-icon="i-heroicons-moon" off-icon="i-heroicons-sun" size="lg"/>
     </div>
     
     <UButton @click="toggleMenu()" class="block md:hidden">
@@ -13,7 +13,7 @@
       <UHorizontalNavigation :links="horizontalLinks"/>
     </div>
     
-    <div v-if="isMenuOpen" :class="`flex flex-col md:hidden absolute top-10 z-50 left-1/2 transform -translate-x-1/2 p-4 items-center ${backColor} bg-opacity-100 rounded-lg shadow-lg`" id="menu">
+    <div v-if="isMenuOpen" :class="`flex flex-col md:hidden absolute top-10 z-50 right-0 transform -translate-x-1/2 p-4 items-center ${backColor} bg-opacity-100 rounded-lg shadow-lg`" id="menu">
       <UVerticalNavigation :links="verticalLinks"/>
     </div>
   </UContainer>
