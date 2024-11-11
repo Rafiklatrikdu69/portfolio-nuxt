@@ -1,242 +1,73 @@
-<script setup>
-const openMenuActive = ref('');
-const activeItems = ref([true, false, false, false]);
-const route = useRoute();
-
-const verifyChangeRoute = (path) => {
-  switch (path) {
-    case '/technologies':
-      activeItems.value = [false, true, false, false];
-      break;
-    case '/projets':
-      activeItems.value = [false, false, true, false];
-      break;
-    case '/competences':
-      activeItems.value = [false, false, false, true];
-      break;
-    default:
-      activeItems.value = [true, false, false, false];
-      break;
-  }
-};
-
-verifyChangeRoute(route.path);
-watch(() => route.path, (newPath) => {
-  verifyChangeRoute(newPath);
-});
-
-const valueMenu = [
-  { propos: 'A propos', link: '/' },
-  { propos: 'Technologies', link: '/technologies' },
-  { propos: 'Projets', link: '/projets' },
-  { propos: 'Compétences', link: '/competences' }
-];
-
-const toggleActive = (index) => {
-  activeItems.value = activeItems.value.map(() => false);
-  activeItems.value[index] = true;
-};
-
-const openMenu = () => {
-  openMenuActive.value = openMenuActive.value === '' ? 'active-menu' : '';
-};
-
-const closeMenu = () => {
-  openMenuActive.value = '';
-};
-</script>
-
 <template>
-  <div class="container">
-    <div class="nav-responsive">
-      <div class="flex-logo">
-        <NuxtImg class="logo" src="img/logo.jpeg" />
-      </div>
-      <div id="mySidenav" :class="'sidenav ' + openMenuActive">
-        <ul class="list">
-          <NuxtLink
-            v-for="(value, index) in valueMenu"
-            :class="['size-link', { active: activeItems[index] }]"
-            @click="closeMenu(); toggleActive(index)"
-            :to="value.link"
-            :key="index"
-          >
-            {{ value.propos }}
-          </NuxtLink>
-        </ul>
-      </div>
-      <span id="openBtn" @click="openMenu">
-        <span v-if="openMenuActive !== ''" id="closeBtn" class="close">×</span>
-        <span class="burger-icon" v-else>
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </span>
+  <UContainer class="w-full flex items-center justify-between">
+    <div class="flex items-center justify-center gap-2">
+      <img src="/img/logo.png" class="image" alt="logo"/>
+      <UToggle  v-model="isDark"  on-icon="i-heroicons-sun" off-icon="i-heroicons-moon" size="lg"/>
     </div>
-
     
-    <nav class="nav">
-      <div class="flex-logo">
-        <NuxtImg class="logo" src="img/logo.jpeg" />
-      </div>
-      <ul class="link">
-        
-        <NuxtLink
-          v-for="(value, index) in valueMenu"
-          :class="['size-link', { active: activeItems[index] }]"
-          @click="toggleActive(index)"
-          :to="value.link"
-          :key="index"
-        >
-          {{ value.propos }}
-        </NuxtLink>
-      </ul>
-    </nav>
-
-    <slot />
-  </div>
+    <UButton @click="toggleMenu()" class="block md:hidden">
+      <Icon :name="isMenuOpen ? 'pajamas:close' : 'pajamas:hamburger'" class="w-4 h-4 mt-1"/>
+    </UButton>
+    
+    <div class="hidden md:flex">
+      <UHorizontalNavigation :links="horizontalLinks"/>
+    </div>
+    
+    <div v-if="isMenuOpen" :class="`flex flex-col md:hidden absolute top-10 z-50 left-1/2 transform -translate-x-1/2 p-4 items-center ${backColor} bg-opacity-100 rounded-lg shadow-lg`" id="menu">
+      <UVerticalNavigation :links="verticalLinks"/>
+    </div>
+  </UContainer>
 </template>
 
-<style scoped>
-.container {
-  width: 100%;
-  display: flex;
-  justify-content: space-between; 
-  padding: 0 20px;
-  height: 60px;
-  position: relative;
-  margin-top: 5px; 
-}
+<script setup>
 
-.logo {
+const isMenuOpen = ref(false);
+const toggleMenu = () => (isMenuOpen.value = !isMenuOpen.value);
+
+const colorMode = useColorMode();
+const isDark = computed({
+  get() {
+    return colorMode.value === 'dark';
+  },
+  set(value) {
+    colorMode.preference = value ? 'dark' : 'light';
+  }
+});
+
+const backColor = ref('');
+
+onMounted(() => {
+  const savedDarkMode = localStorage.getItem('darkMode');
+  if (savedDarkMode !== null) {
+    backColor.value = savedDarkMode === 'true' ? 'bg-gray-800' : 'bg-gray-200';
+    colorMode.preference = savedDarkMode === 'true' ? 'dark' : 'light';
+  } else {
+    backColor.value = isDark.value ? 'bg-gray-800' : 'bg-gray-200';
+  }
+});
+
+watch(isDark, (newVal) => {
+  localStorage.setItem('darkMode', newVal.toString());
+  backColor.value = newVal ? 'bg-gray-800' : 'bg-gray-200';
+});
+
+const horizontalLinks = [
+{ label: "A propos", icon: 'i-heroicons-home', to: "/" },
+{ label: "Technologies", to: "/technologies" },
+{ label: "Projets", to: "/projets" },
+{ label: "Compétences", to: "/competences" }
+];
+
+const verticalLinks = horizontalLinks.map(link => ({
+  ...link,
+  click: () => isMenuOpen.value = !isMenuOpen.value
+}));
+
+</script>
+
+<style scoped>
+.image {
   width: 50px;
   height: 50px;
-  object-fit: cover;
-  margin-right: 10px;
-}
-
-
-
-.nav {
-  width: 100%;
-  position: fixed; 
-  top: 0;
-  right: 0;
-  z-index: 9999; 
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  background-color: white;
-  display: flex;
-  justify-content: space-between; 
-  padding: 10px 20px;
-  align-items: center;
-}
-
-.nav ul {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.nav ul li {
-  cursor: pointer;
-}
-
-.title {
-  font-size: 20px;
-  color: #0066FF;
-}
-
-.active {
-  color: #0066FF;
-}
-
-.size-link {
-  font-size: 11px;
-}
-
-.sidenav {
-  height: 100%;
-  width: 250px;
-  position: fixed;
-  top: 9%;
-  z-index: -1;
-  right: -250px;
-  transition: right 0.4s ease, opacity 0.4s ease;
-  opacity: 0;
-}
-
-.sidenav.active-menu {
-  right: 0;
-  opacity: 1;
-  z-index: 999;
-  background-color: white;
-  height: auto;
-  border-radius: 10px;
-}
-
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  display: block;
-  transition: color 0.4s;
-}
-
-.sidenav ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.close {
-  font-size: 35px;
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  right: 25px;
-  color: #0066FF;
-}
-
-.burger-icon span {
-  display: block;
-  width: 35px;
-  height: 5px;
-  background-color: #0066FF;
-  margin: 6px 0;
-  border-radius: 5px;
-}
-
-.nav-responsive {
-  display: none;
-}
-
-@media screen and (max-width: 600px) {
-  .nav {
-    display: none;
-  }
-
-  .nav-responsive {
-    display: flex;
-    width: 100%;
-    align-items: center; 
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 9999;
-    background-color: white;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  padding: 10px;    
-  }
-
-  .flex-logo {
-    display: flex;
-    align-items: center;
-    width: 100%; 
-  }
-
-  .burger-icon {
-    display: block;
-  }
 }
 </style>

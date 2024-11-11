@@ -28,7 +28,6 @@ figure {
     width: 300px;
     height: 200px;
     padding: 0;
-    background: #fff;
     overflow: hidden;
     display: flex;
     justify-content: center;

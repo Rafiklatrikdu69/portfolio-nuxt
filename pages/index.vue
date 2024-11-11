@@ -14,6 +14,9 @@ const redirectToTechnologies = () =>{
 
 <template>
     <main class="container">
+  
+        
+        
         <div class="avatar">
             <div>
                 <UCarousel v-slot="{ item, index }" :items="items" :ui="{ item: 'w-full' }">
