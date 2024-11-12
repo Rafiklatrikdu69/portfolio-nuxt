@@ -10,15 +10,14 @@ const navigateProjet = () => {
         <UCard class="card">
             <div>
                 <h1 class="w-full text-center font-bold text-2xl">{{ projet.nom }}</h1>
-            <p class=" w-72 text-wrap">{{ projet.description }}</p>
-            <img :src="`../img/${projet.image}`" class="image" alt="Image du projet" />
+                <p class=" w-72 text-wrap">{{ projet.description }}</p>
+                <img :src="`../img/${projet.image}`" class="image" alt="Image du projet" />
             </div>
             <UButton @click="navigateProjet">Retour aux projets</UButton>
-
         </UCard>
         <UCard>
-            <div class="flex  flex-col gap-6 flex-wrap size items-center">
-                <h2 class="font-bold">Technologies utilisées</h2>
+            <h2 class="font-bold">Technologies utilisées</h2>
+            <div class="flex gap-6 flex-wrap size items-center">
                 <TheTechno v-for="technos in projet.technologie" :key="technos.id" :image="technos.image" />
             </div>
         </UCard>
