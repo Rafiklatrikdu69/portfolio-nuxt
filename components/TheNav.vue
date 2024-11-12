@@ -12,7 +12,6 @@
     <div class="hidden md:flex">
       <UHorizontalNavigation :links="horizontalLinks"/>
     </div>
-    
     <div v-if="isMenuOpen" :class="`flex flex-col md:hidden absolute top-10 z-50 right-0 transform -translate-x-1/2 p-4 items-center ${backColor} bg-opacity-100 rounded-lg shadow-lg`" id="menu">
       <UVerticalNavigation :links="verticalLinks"/>
     </div>
