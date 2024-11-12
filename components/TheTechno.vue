@@ -18,14 +18,13 @@ main{
     padding: 10px;
 }
     .card {
-        max-width: 100px; /* Ajustez cette valeur selon vos besoins */
-        padding: 5px; /* Ajustez ou retirez selon vos préférences */
+        max-width: 100px; 
     }
     
     .image {
         width: 40px;
         height: 40px;
-        object-fit: cover;
+        object-fit: contain;
         border-radius: 5px;
     }
 </style>
