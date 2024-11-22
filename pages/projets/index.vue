@@ -6,33 +6,38 @@ const { data: projets } = await useFetch('/api/projets')
 </script>
 <template>
     
-    <main class="container">
-        <h1 class="w-full text-center font-normal text-2xl color">Mes projets</h1>
-        <div class="projets">
-            <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
-        </div>
-        <div>
-            <TheFooter />
+    <main class="container max-w-full">
+   
+        <div class="grid-projets">
+            <h1 class="w-full text-center font-normal text-2xl color">Mes projets</h1>
+            <div class="projets">
+                <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
+            </div>
+            <div>
+                <TheFooter />
+            </div>
         </div>
     </main>
 </template>
 <style scoped>
 .color{
-font-weight: bold;
+    font-weight: bold;
 }
 .container{
+    width: 100%;
     padding: 20px;
 }
 .projets {
     margin: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
     gap: 20px;
     margin-bottom: 60px; 
 }
 
 main > div:last-child {
-    margin-top: 40px; /* Ajoute un espace au-dessus du footer */
+    margin-top: 40px;
 }
 
 </style>

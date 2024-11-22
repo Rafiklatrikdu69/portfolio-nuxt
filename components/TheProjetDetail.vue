@@ -11,7 +11,7 @@ const navigateProjet = () => {
             <div>
                 <h1 class="w-full text-center font-bold text-2xl">{{ projet.nom }}</h1>
                 <p class=" w-72 text-wrap">{{ projet.description }}</p>
-                <img :src="`../img/${projet.image}`" class="image" alt="Image du projet" />
+                <NuxtImg :src="`img/${projet.image}`" class="image" alt="Image du projet" loading="lazy"></NuxtImg>
             </div>
             <UButton @click="navigateProjet">Retour aux projets</UButton>
         </UCard>

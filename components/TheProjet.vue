@@ -8,7 +8,7 @@ defineProps(['projet'])
         <div class="image-container hover07">
             <figure>
                 <NuxtLink :to="`/projets/${projet.id}`">
-                    <img :src="`img/${projet.image}`" alt="Project Image" />
+                    <NuxtImg :src="`img/${projet.image}`" alt="Project Image" loading="lazy"></NuxtImg>
                 </NuxtLink>
             </figure>
         </div>

@@ -13,15 +13,12 @@ const redirectToTechnologies = () =>{
 </script>
 
 <template>
-    <main class="container">
-  
-        
-        
+    <main class="container max-w-full">
         <div class="avatar">
             <div>
                 <UCarousel v-slot="{ item, index }" :items="items" :ui="{ item: 'w-full' }">
                     <div class="text-center mx-auto overflow-visible">
-                        <img :src="item.avatar.src" :alt="item.name" class="rounded-full w-48 h-48 mb-2 floating-image" draggable="false">
+                        <NuxtImg :src="item.avatar.src" :alt="item.name" class="rounded-full w-48 h-48 mb-2 floating-image" draggable="false" loading="lazy"></NuxtImg>
                         <p class="font-semibold">
                             {{ index + 1 }}. {{ item.name }}
                         </p>

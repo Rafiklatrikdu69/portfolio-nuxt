@@ -1,7 +1,7 @@
 <template>
-  <UContainer class="w-full flex items-center justify-between">
+  <UContainer class="mx-0 max-w-full w-full flex items-center justify-between">
     <div class="flex items-center justify-center gap-2">
-      <img src="public/img/logo.png" class="image" alt="logo"/>
+      <NuxtImg  src="img/logo.png" class="image" alt="logo"></NuxtImg>
       <UToggle  v-model="isDark"  on-icon="i-heroicons-moon" off-icon="i-heroicons-sun" size="lg"/>
     </div>
     

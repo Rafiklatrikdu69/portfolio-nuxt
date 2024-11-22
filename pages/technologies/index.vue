@@ -54,7 +54,7 @@ const rows = computed(() => {
                 >
                 <UTable :rows="rows" :columns="columns">
                     <template #title-data="{ row }">
-                        <img  class="image"  :src="`img/${row.image}`"/>
+                        <NuxtImg class="image"  :src="`img/${row.image}`"></NuxtImg>
                     </template>
                 </UTable>
                 <div class="flex justify-end px-3 py-3.5 border-t border-gray-200 dark:border-gray-700">

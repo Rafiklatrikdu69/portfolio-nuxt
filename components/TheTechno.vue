@@ -5,7 +5,7 @@ defineProps(['image'])
 <template>
     <main>
         <UCard class="card">
-            <img class="image" :src="`../img/${image}`" alt="Image de la techno">
+            <NuxtImg class="image" :src="`img/${image}`" alt="Image de la techno" loading="lazy"></NuxtImg>
         </UCard>
     </main>
 </template>
