@@ -1,4 +1,7 @@
 <script setup>
+definePageMeta({
+    layout: 'nav'
+})
 const route = useRoute();
 const{ id } = route.params;
 const {data:projet } = await useFetch(`/api/projets/${id}/technologies`,{key:id})

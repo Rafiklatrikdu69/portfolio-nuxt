@@ -6,7 +6,8 @@ export default defineEventHandler(async (event) => {
     const cat_technos = await client.schema('portfolio').from('competence').select(`
       id, 
       name, 
-      niveau ( id, name,description )
+      niveau ( id, name,description ),
+      projet(*)
     `)
     return cat_technos.data
   })

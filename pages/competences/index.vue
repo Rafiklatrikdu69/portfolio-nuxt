@@ -10,7 +10,7 @@ const { data: competences } = await useFetch('/api/competences')
 <template>
     <main class="container">
         <div class="accordion-wrapper">
-            <div class="accordion" v-for="comp in competences" :key="comp.id">
+            <div class="accordion w-auto" v-for="comp in competences" :key="comp.id">
                 <input v-if="comp.id == 1"  type="radio" name="radio-a" :id="`check${comp.id}`" checked>
                 <input v-else  type="radio" name="radio-a" :id="`check${comp.id}`">
                 <label class="accordion-label" :for="`check${comp.id}`">{{comp.name}}</label>
@@ -20,7 +20,13 @@ const { data: competences } = await useFetch('/api/competences')
                             <h1>{{ niveau.name }}</h1>
                             <p class="text-wrap">{{ niveau.description }}</p>
                         </li>
+                        
                     </ul>
+                    <h1 class="font-bold" >Les projets en liens</h1>
+                    <span v-if="comp.projet.length == 0" class="italic">Aucun projet en liens</span>
+                    <div class="w-full  flex flex-wrap items-center justify-center gap-4">
+                        <TheProjet v-for="projet in comp.projet" :key="projet.id" :projet="projet"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -29,7 +35,7 @@ const { data: competences } = await useFetch('/api/competences')
 <style scoped>
 .container{
     margin: 0 auto;
-    padding: 40px
+    padding: 40px 10px;
 }
 input {
     position: absolute;
@@ -69,8 +75,8 @@ input {
     width: 16px;
     height: 16px;
     text-align: center;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 }
 .accordion-content {
     max-height: 0;
@@ -78,7 +84,11 @@ input {
     color: rgba(4,57,94,1);
     background: rgba(194, 194, 194, 0.774);
     -webkit-transition: all 0.3s;
-    transition: all 0.3s;
+    transition: all 0.5s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:20px;
 }
 .accordion-content p{
     margin: 0;

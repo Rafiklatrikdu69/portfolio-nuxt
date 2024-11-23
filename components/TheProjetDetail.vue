@@ -1,8 +1,13 @@
 <script setup>
 defineProps(['projet'])
+
+import { useToggleStore } from '../store/toggle'
+
+const toggle = useToggleStore()
 const navigateProjet = () => {
-    navigateTo('/projets')
+    navigateTo(toggle.link)
 }
+
 </script>
 
 <template>
@@ -13,7 +18,7 @@ const navigateProjet = () => {
                 <p class=" w-72 text-wrap">{{ projet.description }}</p>
                 <NuxtImg :src="`img/${projet.image}`" class="image" alt="Image du projet" loading="lazy"></NuxtImg>
             </div>
-            <UButton @click="navigateProjet">Retour aux projets</UButton>
+            <UButton @click="navigateProjet">{{toggle.toggle}}</UButton>
         </UCard>
         <UCard>
             <h2 class="font-bold">Technologies utilisées</h2>
