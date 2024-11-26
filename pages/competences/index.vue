@@ -1,110 +1,40 @@
 <script setup async>
 definePageMeta({
-    layout: 'nav'
-})
+    layout: 'nav',
+});
 
-const { data: competences } = await useFetch('/api/competences')
+const items = [];
+const { data: competences } = await useFetch('/api/competences');
+competences.value.map(competences =>{
+    items.push({
+        label: competences.name,
+        content: competences.niveau,
+        projet:competences.projet
+    });
+});
 
 </script>
-
 <template>
     <main class="container">
-        <div class="accordion-wrapper">
-            <div class="accordion w-auto" v-for="comp in competences" :key="comp.id">
-                <input v-if="comp.id == 1"  type="radio" name="radio-a" :id="`check${comp.id}`" checked>
-                <input v-else  type="radio" name="radio-a" :id="`check${comp.id}`">
-                <label class="accordion-label" :for="`check${comp.id}`">{{comp.name}}</label>
-                <div class="accordion-content">
-                    <ul>
-                        <li v-for="niveau in comp.niveau" :key="niveau.id">
-                            <h1>{{ niveau.name }}</h1>
-                            <p class="text-wrap">{{ niveau.description }}</p>
-                        </li>
-                        
-                    </ul>
-                    <h1 class="font-bold" >Les projets en liens</h1>
-                    <span v-if="comp.projet.length == 0" class="italic">Aucun projet en liens</span>
-                    <div class="w-full  flex flex-wrap items-center justify-center gap-4">
-                        <TheProjet v-for="projet in comp.projet" :key="projet.id" :projet="projet"/>
+        <UAccordion :items="items">
+            <template #item="{ item }">
+                <div class="flex flex-col gap-3">
+                    <div class="text-gray-900 dark:text-white text-center" v-for="c in item.content" :key="c.id">
+                        <p class=" font-bold"> {{ c.name }}</p>
+                        <p> {{ c.description }}</p>
+                    </div>
+                    <h2 class="text-center font-bold">Projets en liens</h2>
+                    <p v-if="item.projet.length == 0" class="italic text-center">Aucun projets en liens.</p>
+                    <div class="flex justify-around flex-wrap items-center gap-3" >
+                        <TheProjet  :projet="p" v-for="p in item.projet" :key="p.id"/>
                     </div>
                 </div>
-            </div>
-        </div>
+            </template> 
+        </UAccordion>
     </main>
 </template>
 <style scoped>
 .container{
-    margin: 0 auto;
-    padding: 40px 10px;
+    padding: 22px;
 }
-input {
-    position: absolute;
-    opacity: 0;
-    z-index: -1;
-}
-.accordion-wrapper {
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
-    margin:0 auto;
-}
-.accordion {
-    width: 100%;
-    color: white;
-    overflow: hidden;
-    margin-bottom: 16px;
-}
-.accordion:last-child{
-    margin-bottom: 0;
-}
-.accordion-label {
-    display: flex;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    padding: 16px;
-    background: rgba(4,57,94,.8);
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 20px;
-}
-.accordion-label:hover {
-    background: rgba(4,57,94,1);
-}
-.accordion-label::after {
-    content: "\276F";
-    width: 16px;
-    height: 16px;
-    text-align: center;
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
-}
-.accordion-content {
-    max-height: 0;
-    padding: 0 16px;
-    color: rgba(4,57,94,1);
-    background: rgba(194, 194, 194, 0.774);
-    -webkit-transition: all 0.3s;
-    transition: all 0.5s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap:20px;
-}
-.accordion-content p{
-    margin: 0;
-    color: rgba(4,57,94,.7);
-    font-size: 18px;
-}
-input:checked + .accordion-label {
-    background: rgba(4,57,94,1);
-}
-input:checked + .accordion-label::after {
-    -webkit-transform: rotate(90deg);
-    transform: rotate(90deg);
-}
-input:checked ~ .accordion-content {
-    max-height: 100vh;
-    padding: 16px;
-}
-
 </style>

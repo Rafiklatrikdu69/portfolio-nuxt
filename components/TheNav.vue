@@ -1,7 +1,9 @@
 <template>
   <UContainer class="mx-0 max-w-full w-full flex items-center justify-between">
     <div class="flex items-center justify-center gap-2">
-      <NuxtImg  src="img/logo.png" class="image" alt="logo"></NuxtImg>
+      <NuxtLink to="/">
+        <NuxtImg  src="img/logo.png" class="image" alt="logo"></NuxtImg>
+      </NuxtLink>
       <UToggle  v-model="isDark"  on-icon="i-heroicons-moon" off-icon="i-heroicons-sun" size="lg"/>
     </div>
     
@@ -68,5 +70,8 @@ const verticalLinks = horizontalLinks.map(link => ({
 .image {
   width: 50px;
   height: 50px;
+}
+.image:hover{
+  cursor: pointer;
 }
 </style>

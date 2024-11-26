@@ -35,7 +35,7 @@ onMounted(() => {
 
 <template>
     <UCard>
-        <div class="image-container hover07">
+        <div :class="`image-container hover07`">
             <figure>
                 <div v-if="isLoading" class="skeleton-container">
                     <USkeleton class="skeleton" />
