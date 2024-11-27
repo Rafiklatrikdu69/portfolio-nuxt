@@ -26,19 +26,25 @@ const redirectToTechnologies = () =>{
                 </UCarousel>
             </div>
             <div>
-                <UCard>
-                    <template #header>
-                        <p class="presentation">
-                            Salut ! Moi, c'est Rafik (ou Rafiki pour les intimes) ! Étudiant en informatique, passionné par le code et toujours prêt à repousser les limites du possible, je m’immerge dans la tech pour transformer chaque idée en projet concret. Que ce soit pour construire des applications innovantes, explorer des algorithmes complexes, ou plonger dans les dernières tendances en IA et développement web, je suis là pour faire bouger les choses !
-                            <NuxtImg class="arrow" @click="redirectToTechnologies" src="img/right-arrow.png" />
+                      <div class="presentation">
+                        <UCard>
+                        <p >
+                          Salut ! Moi, c'est Rafik (ou Rafiki pour les intimes) ! Étudiant en informatique, passionné par le code et toujours prêt à repousser les limites du possible, je m’immerge dans la tech pour transformer chaque idée en projet concret.
                         </p>
-                    </template>
-                </UCard>
+                        </UCard>
+                        <UCard>
+                        <p>
+                          Que ce soit pour construire des applications innovantes, explorer des algorithmes complexes, ou plonger dans les dernières tendances en IA et développement web, je suis là pour faire bouger les choses !
+                        </p>
+                        </UCard>
+                        <NuxtImg class="arrow" @click="redirectToTechnologies" src="img/right-arrow.png" />
+                      </div>
+
             </div>
         </div>
         <div>
             <TheFooter />
-            
+
         </div>
     </main>
 </template>
@@ -57,6 +63,7 @@ const redirectToTechnologies = () =>{
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
 }
 
 .avatar {
@@ -98,11 +105,12 @@ const redirectToTechnologies = () =>{
     .container {
         gap: 1em;
     }
-    
+
     .presentation {
         width: 100%;
         flex-direction: column;
         align-items: center;
     }
 }
+
 </style>

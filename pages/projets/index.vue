@@ -10,8 +10,6 @@ const { data: projets } = await useFetch('/api/projets')
             <h1 class="w-full text-center font-normal text-2xl color">Mes projets</h1>
             <div class="projets">
                 <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
-                    
-            
             </div>
             <div>
                 <TheFooter />
