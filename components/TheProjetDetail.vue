@@ -18,6 +18,11 @@ const navigateProjet = () => {
                 <p class=" w-72 text-wrap">{{ projet.description }}</p>
                 <NuxtImg :src="`img/${projet.image}`" class="image" alt="Image du projet" loading="lazy"></NuxtImg>
             </div>
+            <div v-if="projet.git">
+                <NuxtLink :to="projet.git" >
+                    <Icon class="w-40 h-16 cursor-pointer" name="uil:github" />   
+                </NuxtLink>
+            </div>  
             <UButton @click="navigateProjet">{{toggle.toggle}}</UButton>
         </UCard>
         <UCard>
