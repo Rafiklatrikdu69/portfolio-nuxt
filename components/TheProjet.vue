@@ -78,10 +78,6 @@ figure {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    -webkit-filter: blur(3px);
-    filter: blur(3px);
-    -webkit-transition: filter 0.3s ease-in-out;
-    transition: filter 0.3s ease-in-out;
     border-radius: 10px;
 }
 
