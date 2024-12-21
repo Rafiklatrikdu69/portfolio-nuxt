@@ -5,7 +5,7 @@ definePageMeta({
 const { data: projets } = await useFetch('/api/projets')
 </script>
 <template>
-    <main class="container max-w-full">
+    <main class="container max-w-full pt-16">
         <div class="grid-projets">
             <h1 class="w-full text-center font-normal text-2xl color">Mes projets</h1>
             <div class="projets">
@@ -15,6 +15,7 @@ const { data: projets } = await useFetch('/api/projets')
                 <TheFooter />
             </div>
         </div>
+
     </main>
 </template>
 <style scoped>

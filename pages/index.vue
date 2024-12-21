@@ -1,116 +1,97 @@
 <script setup>
 definePageMeta({
-    layout: 'nav'
+  layout: 'nav'
 })
 
 const items = [{
-    name: 'Rafik Bouchenna',
-    avatar: { src: 'img/photo-profil.jpeg' }
+  name: 'Rafik Bouchenna',
+  avatar: { src: 'img/photo-profil.jpeg' }
 }]
-const redirectToTechnologies = () =>{
-    navigateTo('/technologies')
+const redirectToTechnologies = () => {
+  navigateTo('/technologies')
 }
 </script>
 
 <template>
-    <main class="container max-w-full">
-        <div class="avatar">
-            <div>
-                <UCarousel v-slot="{ item, index }" :items="items" :ui="{ item: 'w-full' }">
-                    <div class="text-center mx-auto overflow-visible">
-                        <NuxtImg :src="item.avatar.src" :alt="item.name" class="rounded-full w-48 h-48 mb-2 floating-image" draggable="false" loading="lazy"></NuxtImg>
-                        <p class="font-semibold">
-                            {{ index + 1 }}. {{ item.name }}
-                        </p>
-                    </div>
-                </UCarousel>
-            </div>
-            <div>
-                      <div class="presentation">
-                        <UCard>
-                        <p >
-                          Salut ! Moi, c'est Rafik (ou Rafiki pour les intimes) ! Étudiant en informatique, passionné par le code et toujours prêt à repousser les limites du possible, je m’immerge dans la tech pour transformer chaque idée en projet concret.
-                        </p>
-                        </UCard>
-                        <UCard>
-                        <p>
-                          Que ce soit pour construire des applications innovantes, explorer des algorithmes complexes, ou plonger dans les dernières tendances en IA et développement web, je suis là pour faire bouger les choses !
-                        </p>
-                        </UCard>
-                        <NuxtImg class="arrow" @click="redirectToTechnologies" src="img/right-arrow.png" />
-                      </div>
-
-            </div>
+  <main class="container max-w-full py-10 pt-16 p-6">
+    <div class="avatar flex flex-col items-center text-center gap-6">
+      <UCarousel v-slot="{ item, index }" :items="items" :ui="{ item: 'w-full' }">
+        <div class="overflow-visible p-3">
+          <NuxtImg :src="item.avatar.src" :alt="item.name" class="rounded-full w-48 h-48 mb-4 floating-image shadow-lg" draggable="false" loading="lazy"></NuxtImg>
+          <p class="font-semibold text-lg">
+            {{ index + 1 }}. {{ item.name }}
+          </p>
         </div>
-        <div>
-            <TheFooter />
+      </UCarousel>
+    </div>
 
-        </div>
-    </main>
+    <div class="presentation mx-auto mt-8 text-center">
+      <UCard class="bg-white shadow-md hover:shadow-xl transition-shadow p-4">
+        <p >
+          Salut ! Moi, c'est Rafik (ou Rafiki pour les intimes) ! Étudiant en informatique, passionné par le code et toujours prêt à repousser les limites du possible, je m’immerge dans la tech pour transformer chaque idée en projet concret.
+        </p>
+      </UCard>
+      <UCard class="bg-white shadow-md hover:shadow-xl transition-shadow p-4 mt-4">
+        <p >
+          Que ce soit pour construire des applications innovantes, explorer des algorithmes complexes, ou plonger dans les dernières tendances en IA et développement web, je suis là pour faire bouger les choses !
+        </p>
+      </UCard>
+      <NuxtImg class="arrow mt-4 cursor-pointer hover:scale-110 transition-transform" @click="redirectToTechnologies" src="img/right-arrow.png" alt="Go to Technologies" />
+    </div>
+
+    <div>
+      <TheFooter />
+
+    </div>
+  </main>
 </template>
 
 <style lang="css" scoped>
-
-
 .container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.presentation {
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .avatar {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 2%;
+  margin-bottom: 2rem;
 }
 
-/* Animation de l'image */
 .floating-image {
-    animation: float 3s ease-in-out infinite;
-    max-width: 100%;
-    padding: 10px;
-    height: auto;
+  animation: float 3s ease-in-out infinite;
+  max-width: 100%;
+  height: auto;
+  border: 3px solid #f0f0f0;
+  transition: transform 0.3s ease;
 }
 
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-5px);
-    }
+.floating-image:hover {
+  transform: scale(1.05);
 }
 
 /* Flèche */
 .arrow {
-    display: inline;
-    width: 16px;
-    height: auto;
-    vertical-align: middle;
-    cursor: pointer;
+  width: 40px;
+  height: 40px;
+  transition: all 0.3s ease;
+}
+
+.arrow:hover {
+  transform: rotate(20deg);
+}
+
+/* Cartes */
+UCard {
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 /* Media queries pour petits écrans */
 @media screen and (max-width: 600px) {
-    .container {
-        gap: 1em;
-    }
-
-    .presentation {
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-    }
+  .presentation {
+    padding: 0 1rem;
+  }
 }
-
 </style>

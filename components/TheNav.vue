@@ -1,16 +1,16 @@
 <template>
-  <UContainer class="mx-0 max-w-full w-full flex items-center justify-between">
+  <UContainer class="navbar fixed top-0 left-0 w-full flex items-center justify-between px-4 py-2 shadow-md">
     <div class="flex items-center justify-center gap-2">
       <NuxtLink to="/">
         <NuxtImg  src="img/logo.png" class="image" alt="logo"></NuxtImg>
       </NuxtLink>
-      <UToggle  v-model="isDark"  on-icon="i-heroicons-moon" off-icon="i-heroicons-sun" size="lg"/>
+      <UToggle  v-model="isDark"  :on-icon="iconOn" :off-icon="iconOff" size="lg"/>
     </div>
-    
+
     <UButton @click="toggleMenu()" class="block md:hidden">
       <Icon :name="isMenuOpen ? 'pajamas:close' : 'pajamas:hamburger'" class="w-4 h-4 mt-1"/>
     </UButton>
-    
+
     <div class="hidden md:flex">
       <UHorizontalNavigation :links="horizontalLinks"/>
     </div>
@@ -23,6 +23,8 @@
 <script setup>
 
 const isMenuOpen = ref(false);
+const  iconOn = ref('i-heroicons-moon');
+const iconOff = ref('i-heroicons-sun');
 const toggleMenu = () => (isMenuOpen.value = !isMenuOpen.value);
 
 const colorMode = useColorMode();
@@ -73,5 +75,15 @@ const verticalLinks = horizontalLinks.map(link => ({
 }
 .image:hover{
   cursor: pointer;
+}
+
+.navbar {
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar:hover {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 </style>

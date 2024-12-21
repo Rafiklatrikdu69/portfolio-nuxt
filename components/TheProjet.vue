@@ -34,7 +34,8 @@ onMounted(() => {
 </script>
 
 <template>
-    <UCard>
+
+    <UCard class="zoom">
         <div :class="`image-container hover07`">
             <figure>
                 <div v-if="isLoading" class="skeleton-container">
@@ -42,8 +43,7 @@ onMounted(() => {
                 </div>
                 <NuxtLink v-if="!isLoading" :to="`/projets/${projet.id}`" @click="toggleStoreLink">
                     <NuxtImg 
-               
-                    :src="`img/${projet.image}`" 
+                    :src="`img/${projet.image}`"
                     alt="Project Image" 
                     loading="lazy" 
                     @load="onImageLoad" 
@@ -108,5 +108,11 @@ img {
   height: 100%;
   object-fit:cover; 
   border-radius: 10px;
+}
+.zoom{
+  transition: transform .2s;
+}
+.zoom:hover{
+  transform: scale(1.1);
 }
 </style>
