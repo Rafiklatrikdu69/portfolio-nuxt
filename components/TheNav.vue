@@ -1,5 +1,5 @@
 <template>
-  <UContainer class="navbar fixed top-0 left-0 w-full flex items-center justify-between px-4 py-2 shadow-md">
+  <UContainer class="navbar fixed top-0 left-0 max-w-none w-full flex items-center justify-between px-4 py-2 shadow-md">
     <div class="flex items-center justify-center gap-2">
       <NuxtLink to="/">
         <NuxtImg  src="img/logo.png" class="image" alt="logo"></NuxtImg>
