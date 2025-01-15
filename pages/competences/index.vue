@@ -23,8 +23,8 @@ competences.value.map(competences =>{
                         <p class=" font-bold"> {{ c.name }}</p>
                         <p> {{ c.description }}</p>
                     </div>
-                    <h2 class="text-center font-bold">Projets en liens</h2>
-                    <p v-if="item.projet.length == 0" class="italic text-center">Aucun projets en liens.</p>
+                    <h2 class="text-center font-bold">Related projects</h2>
+                    <p v-if="item.projet.length == 0" class="italic text-center">No linked projects.</p>
                     <div class="flex justify-around flex-wrap items-center gap-3 p-4 padding-responvive" >
                         <TheProjet  :projet="p" v-for="p in item.projet" :key="p.id"/>
                     </div>

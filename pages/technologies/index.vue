@@ -5,11 +5,11 @@ definePageMeta({
 const columns = [
   {
     key: 'title',
-    label: 'Langages - Outils - Stockage'
+    label: 'Langages - Tools - Storage'
   },
   {
     key: 'name',
-    label: 'Nom'
+    label: 'Name'
   }]
 
 const page = ref(1)
@@ -30,7 +30,7 @@ const rows = computed(() => {
 
 <template>
   <main class="main">
-    <h1 class=" font-bold text-2xl w-full text-center">Mes Technologies</h1>
+    <h1 class=" font-bold text-2xl w-full text-center">My Technologies</h1>
     <div class="tabset">
             <span v-for="cat in cat_technos" :key="cat.id">
                 <input

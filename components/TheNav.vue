@@ -55,10 +55,11 @@ watch(isDark, (newVal) => {
 });
 
 const horizontalLinks = [
-{ label: "A propos", icon: 'i-heroicons-home', to: "/" },
+{ label: "About", icon: 'i-heroicons-home', to: "/" },
 { label: "Technologies", to: "/technologies" },
-{ label: "Projets", to: "/projets" },
-{ label: "Compétences", to: "/competences" }
+{ label: "Projects", to: "/projets" },
+  { label: "Skill", to: "/competences" },
+{ label: "Blog", to: "/blog" },
 ];
 
 const verticalLinks = horizontalLinks.map(link => ({

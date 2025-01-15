@@ -8,11 +8,11 @@ const toggle = useToggleStore()
 const router = useRoute()
 const toggleStoreLink = () => {
     if (router.name === 'competences') {
-        if (toggle.toggle === 'Retour aux projets') {
+        if (toggle.toggle === 'Return to the page project') {
             toggle.toggleLinkPage();
         }
     } else if (router.name === 'projets') {
-        if (toggle.toggle === 'Retour à la page des compétences') {
+        if (toggle.toggle === 'Return to the page skill') {
             toggle.toggleLinkPage();
         }
     }

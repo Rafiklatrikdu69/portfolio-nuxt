@@ -7,7 +7,7 @@ const { data: projets } = await useFetch('/api/projets')
 <template>
     <main class="container max-w-full pt-16">
         <div class="grid-projets">
-            <h1 class="w-full text-center font-normal text-2xl color">Mes projets</h1>
+            <h1 class="w-full text-center font-normal text-2xl color">My projects</h1>
             <div class="projets">
                 <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
             </div>

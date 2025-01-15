@@ -28,12 +28,12 @@ const redirectToTechnologies = () => {
     <div class="presentation mx-auto mt-8 text-center">
       <UCard class="bg-white shadow-md hover:shadow-xl transition-shadow p-4">
         <p >
-          Salut ! Moi, c'est Rafik (ou Rafiki pour les intimes) ! Étudiant en informatique, passionné par le code et toujours prêt à repousser les limites du possible, je m’immerge dans la tech pour transformer chaque idée en projet concret.
+          Hi ! I'm Rafik (or Rafiki for short)! Computer science student, passionate about coding and always ready to push the limits of what is possible, I immerse myself in tech to transform each idea into a concrete project.
         </p>
       </UCard>
       <UCard class="bg-white shadow-md hover:shadow-xl transition-shadow p-4 mt-4">
         <p >
-          Que ce soit pour construire des applications innovantes, explorer des algorithmes complexes, ou plonger dans les dernières tendances en IA et développement web, je suis là pour faire bouger les choses !
+          Whether it's building innovative applications, exploring complex algorithms, or diving into the latest trends in AI and web development, I'm here to make things happen!
         </p>
       </UCard>
       <NuxtImg class="arrow mt-4 cursor-pointer hover:scale-110 transition-transform" @click="redirectToTechnologies" src="img/right-arrow.png" alt="Go to Technologies" />

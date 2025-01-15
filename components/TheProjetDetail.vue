@@ -26,7 +26,7 @@ const navigateProjet = () => {
             <UButton @click="navigateProjet">{{toggle.toggle}}</UButton>
         </UCard>
         <UCard>
-            <h2 class="font-bold">Technologies utilisées</h2>
+            <h2 class="font-bold">Technologies used</h2>
             <div class="flex gap-6 flex-wrap size items-center">
                 <TheTechno v-for="technos in projet.technologie" :key="technos.id" :image="technos.image" />
             </div>
