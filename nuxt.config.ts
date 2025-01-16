@@ -29,7 +29,8 @@ export default defineNuxtConfig({
   vite: {
     define: {
       'process.env.APP_URL': JSON.stringify(process.env.SUPABASE_URL),
-      'process.env.APP_KEY': JSON.stringify(process.env.SUPABASE_KEY)
+      'process.env.APP_KEY': JSON.stringify(process.env.SUPABASE_KEY),
+      'process.env.GIT_TOKEN': JSON.stringify(process.env.GIT_TOKEN)
     }
   },
   redirectOptions: {

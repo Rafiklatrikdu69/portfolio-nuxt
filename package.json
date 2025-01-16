@@ -16,6 +16,7 @@
     "@nuxtjs/supabase": "^1.4.2",
     "@pinia/nuxt": "^0.7.0",
     "clean": "^4.0.2",
+    "marked": "^15.0.6",
     "nuxt": "^3.14.159",
     "nuxt-app": "file:",
     "pinia": "^2.2.6",

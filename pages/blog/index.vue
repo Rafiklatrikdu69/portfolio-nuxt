@@ -1,8 +1,5 @@
 <template>
-  <div style="padding: 22px;
-  padding-top: 100px;">
-
-
+  <div class="p-16 flex flex-col min-h-screen from-white-50 to-white dark:from-gray-900 dark:to-gray-800">
     <div class="py-12 sm:py-16 ">
       <div class="mx-auto max-w-5xl px-4 sm:px-6">
         <div class="mx-auto max-w-xl lg:mx-0">
@@ -15,7 +12,6 @@
             class="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 border-t border-gray-200 pt-8 sm:mt-10 sm:pt-10 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <article v-for="post in posts" :key="post.id"
                    class="flex flex-col items-start  rounded-md shadow overflow-hidden transition-all duration-300 hover:shadow-md">
-            <!-- Featured Image -->
             <div class="relative w-full aspect-[16/9] overflow-hidden">
               <NuxtImg
                   :src="post.image"
@@ -30,7 +26,6 @@
               </a>
             </div>
 
-            <!-- Content -->
             <div class="flex flex-col flex-1 p-4">
               <div class="flex items-center gap-x-3 text-xs">
                 <time :datetime="post.created_at" >{{ formatDate(post.created_at) }}</time>
@@ -38,15 +33,14 @@
 
               <div class="group relative flex-1">
                 <h3 class="mt-2 text-base font-semibold leading-6 group-hover:text-gray-600">
-                  <a :href="post.image">
+                  <NuxtLink :to="'/blog/'+post.id">
                     <span class="absolute inset-0"/>
                     {{ post.title }}
-                  </a>
+                  </NuxtLink>
                 </h3>
                 <p class="mt-3 line-clamp-2 text-sm leading-6 ">{{ post.content }}</p>
               </div>
 
-              <!-- Author -->
               <div class="relative mt-6 flex items-center gap-x-3">
                 <NuxtImg
                     :src="post.profile"

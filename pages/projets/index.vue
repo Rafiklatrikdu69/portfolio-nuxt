@@ -5,7 +5,7 @@ definePageMeta({
 const { data: projets } = await useFetch('/api/projets')
 </script>
 <template>
-    <main class="container max-w-full pt-16">
+    <main class="container max-w-full pt-16 flex flex-col min-h-screen  from-white-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div class="grid-projets">
             <h1 class="w-full text-center font-normal text-2xl color">My projects</h1>
             <div class="projets">
@@ -31,7 +31,7 @@ const { data: projets } = await useFetch('/api/projets')
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
-    margin-bottom: 60px; 
+    margin-bottom: 60px;
 }
 
 main > div:last-child {
