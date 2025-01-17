@@ -10,7 +10,7 @@ I am a passionate developer focused on creating innovative web applications. My 
 
 ## 📂 Project Structure
 ```
-portfolio/
+portfolio-nuxt/
 ├── src/
 │   ├── components/
 │   ├── pages/
