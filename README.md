@@ -1,14 +1,14 @@
 # Personal Portfolio
 
-## 👋 About Me
+##  About Me
 I am a passionate developer focused on creating innovative web applications. My expertise spans front-end and back-end development, with a particular interest in modern technologies and development best practices.
 
-## 🛠 Technologies
+##  Technologies
 - **Front-end:** Nuxt
 - **Database:** PostgreSQL
 - **Tools:** Git, VS Code
 
-## 📂 Project Structure
+##  Project Structure
 ```
 portfolio-nuxt/
 ├── src/
@@ -19,7 +19,7 @@ portfolio-nuxt/
 └── utils/
 ```
 
-## 💻 Local Installation
+##  Local Installation
 
 1. Clone the repository
 ```bash
@@ -37,6 +37,6 @@ npm install
 npm run dev
 ```
 
-## 📫 Contact
+##  Contact
 - Email: rafik.bouchenna050@gmail.com
 - LinkedIn: [https://www.linkedin.com/in/rafik-bouchenna-33ab2b250/]
