@@ -23,8 +23,8 @@ const redirectToTechnologies = () => {
         <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
           Hi! I'm Rafik (or Rafiki for short)! Computer science student, passionate about coding and always ready to push the limits of what is possible, I immerse myself in tech to transform each idea into a concrete project.
         </p>
-        <a href="https://bff.ecoindex.fr/redirect/?url=http://portfolio-rafiki.vercel.app/" target="_blank">
-          <img src="https://bff.ecoindex.fr/badge/?&url=http://portfolio-rafiki.vercel.app/" alt="Ecoindex Badge" />
+        <a href="https://bff.ecoindex.fr/redirect/?url=https://portfolio-rafiki.vercel.app/" target="_blank">
+          <img src="https://bff.ecoindex.fr/badge/?&url=https://portfolio-rafiki.vercel.app/" alt="Ecoindex Badge" />
         </a>
         <div class="pt-4">
           <button
