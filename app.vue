@@ -1,6 +1,6 @@
 <script setup>
 useSeoMeta({
-  title: 'My Portfolio',
+  title: 'Rafik | Bouchenna',
 })
 </script>
 

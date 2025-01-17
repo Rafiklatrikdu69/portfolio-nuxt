@@ -59,7 +59,8 @@ const horizontalLinks = [
 { label: "Technologies", to: "/technologies" },
 { label: "Projects", to: "/projets" },
   { label: "Skill", to: "/competences" },
-{ label: "Blog", to: "/blog" },
+  { label: "Blog", to: "/blog" },
+  { label: "CV", to: "/cv" },
 ];
 
 const verticalLinks = horizontalLinks.map(link => ({
