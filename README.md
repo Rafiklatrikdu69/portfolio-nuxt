@@ -40,4 +40,3 @@ npm run dev
 ## 📫 Contact
 - Email: rafik.bouchenna050@gmail.com
 - LinkedIn: [https://www.linkedin.com/in/rafik-bouchenna-33ab2b250/]
-- GitHub: @Rafiklatrikdu69
