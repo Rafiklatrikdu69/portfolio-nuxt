@@ -1,5 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+      app: {
+        head: {
+          meta: [
+            { name: 'google-adsense-account', content: 'ca-pub-7357393740215228' }
+          ]
+        }
+      }
+    ,
   css: [
     '~/assets/main.css'
   ],

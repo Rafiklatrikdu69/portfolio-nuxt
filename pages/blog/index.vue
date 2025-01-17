@@ -18,6 +18,9 @@
       </div>
     </div>
   </div>
+  <footer class="mt-auto">
+    <TheFooter />
+  </footer>
 </template>
 
 <script setup>
