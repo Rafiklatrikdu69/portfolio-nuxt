@@ -34,7 +34,7 @@ const rows = computed(() => {
   <div class="flex flex-col min-h-screen">
     <main class="flex-grow from-white-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <div class="mb-12 text-center">
+        <div class="mb-12 text-center pt-4">
           <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
             My Technologies
           </h1>

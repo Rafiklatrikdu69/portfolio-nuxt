@@ -45,7 +45,7 @@ const { data: projet, pending, error: fetchError } = await useFetch(
       </div>
 
       <div v-else-if="projet" class="space-y-8">
-        <nav class="flex items-center space-x-2 text-gray-500 dark:text-gray-400 mb-8">
+        <nav class="flex items-center space-x-2 text-gray-500 dark:text-gray-400 mb-8 pt-6">
           <NuxtLink
               to="/"
               class="hover:text-gray-700 dark:hover:text-gray-300 transition-colors"

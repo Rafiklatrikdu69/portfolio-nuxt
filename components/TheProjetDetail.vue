@@ -36,6 +36,7 @@ const navigateProjet = () => {
 
 <style lang="css" scoped>
 .container {
+  padding: 10px;
     display: flex;
     align-items: center;
     min-height: 100vh;
@@ -53,7 +54,7 @@ const navigateProjet = () => {
 }
 
 .card {
-    padding: 2rem;
+    padding: 1rem;
     max-width: 100%;
     text-align: center;
     align-items: center;
