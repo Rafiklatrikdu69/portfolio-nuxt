@@ -27,7 +27,5 @@
 definePageMeta({
   layout: 'nav',
 });
-const {data: posts} = await useFetch('/api/post')
-
-
+const {data: posts} = await useFetch('/api/post');
 </script>

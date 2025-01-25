@@ -47,7 +47,7 @@ const renderedReadme = computed(() => {
 </script>
 
 <template>
-  <div class="min-h-screen from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+  <div class="min-h-screen from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 pt-6">
     <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       <div class="mb-8">
         <h1 class="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
