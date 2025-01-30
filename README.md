@@ -8,17 +8,6 @@ I am a passionate developer focused on creating innovative web applications. My 
 - **Database:** PostgreSQL
 - **Tools:** Git, VS Code
 
-##  Project Structure
-```
-portfolio-nuxt/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── assets/
-├── public/
-└── utils/
-```
-
 ##  Local Installation
 
 1. Clone the repository
@@ -39,4 +28,4 @@ npm run dev
 
 ##  Contact
 - Email: rafik.bouchenna050@gmail.com
-- LinkedIn: [https://www.linkedin.com/in/rafik-bouchenna-33ab2b250/]
+- LinkedIn: [https://www.linkedin.com/in/rafik-bouchenna]
