@@ -61,6 +61,7 @@ const horizontalLinks = [
   { label: "Skill", to: "/competences" },
   { label: "Blog", to: "/blog" },
   { label: "CV", to: "/cv" },
+  { label: "Contact", to: "/contact" },
 ];
 
 const verticalLinks = horizontalLinks.map(link => ({
