@@ -20,8 +20,30 @@ const pageCount = 3
 const { data: cat_technos } = await useFetch('/api/categories/technologies')
 const selectedTab = ref(1)
 
+// Animation du flou seulement pour la table
+const tableBlur = ref(true)
+
+// Initialiser avec un flou, puis l'enlever après le premier rendu
+onMounted(() => {
+  setTimeout(() => {
+    tableBlur.value = false
+  }, 800)
+})
+
+// Ajouter un flou lors des changements d'onglet ou de page
 watch(selectedTab, () => {
   page.value = 1
+  tableBlur.value = true
+  setTimeout(() => {
+    tableBlur.value = false
+  }, 800)
+})
+
+watch(page, () => {
+  tableBlur.value = true
+  setTimeout(() => {
+    tableBlur.value = false
+  }, 600)
 })
 
 const rows = computed(() => {
@@ -75,16 +97,18 @@ const rows = computed(() => {
                 v-show="selectedTab === cat.id"
                 class="space-y-6"
             >
+              <!-- Container pour la table avec l'animation de flou -->
               <div class="overflow-hidden bg-white dark:bg-gray-900 rounded-lg shadow">
                 <UTable
                     :rows="rows"
                     :columns="columns"
-                    class="divide-y divide-gray-200 dark:divide-gray-700"
+                    class="divide-y divide-gray-200 dark:divide-gray-700 transition-all duration-300"
+                    :class="{'table-blur': tableBlur}"
                 >
                   <template #title-data="{ row }">
                     <div class="flex items-center">
                       <NuxtImg
-                          class="w-10 h-10 rounded-lg object-cover shadow-sm hover:shadow-md transition-shadow duration-200"
+                          class="w-10 h-10 rounded-lg object-cover shadow-sm hover:shadow-md transition-shadow duration-200 image-hover"
                           :src="`img/${row.image}`"
                           loading="lazy"
                       />
@@ -125,14 +149,25 @@ const rows = computed(() => {
 }
 
 .tab-transition {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 
 .image-hover {
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.1s ease-in-out;
 }
 
 .image-hover:hover {
   transform: scale(1.05);
+}
+
+/* Animation de flou pour la table uniquement */
+.table-blur {
+  filter: blur(5px);
+  opacity: 0.7;
+}
+
+/* Transition pour l'animation de flou */
+.transition-all {
+  transition: filter 0.2s ease, opacity 0.2s ease;
 }
 </style>

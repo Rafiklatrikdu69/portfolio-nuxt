@@ -1,41 +1,37 @@
 <script setup>
 definePageMeta({
-    layout: 'nav'
+  layout: 'nav'
 })
 const { data: projets } = await useFetch('/api/projets')
 </script>
+
 <template>
-    <main class="container max-w-full pt-16 p-0 flex flex-col min-h-screen  from-white-50 to-white dark:from-gray-900 dark:to-gray-800">
-        <div class="grid-projets">
-            <h1 class="w-full text-center font-normal text-4xl color">My projects</h1>
-            <div class="projets">
-                <TheProjet  v-for="p in projets" :key="p.id" :projet="p"/>
-            </div>
-            <div>
-                <TheFooter />
-            </div>
+  <main class="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 pt-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <h1 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white pt-3">
+        My Projects
+      </h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div class="flex justify-center" v-for="p in projets" :key="p.id">
+          <TheProjet :projet="p" class="w-full" />
         </div>
+      </div>
 
-    </main>
+    </div>
+    <TheFooter class="mt-auto pt-8" />
+
+  </main>
 </template>
+
 <style scoped>
-.color{
-    font-weight: bold;
+/* Styles personnalisés pour les ajustements précis si nécessaire */
+:deep(.project-image) {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
 }
-.container{
-    width: 100%;
-}
-.projets {
-    margin: 20px;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 60px;
-}
-
-main > div:last-child {
-    margin-top: 40px;
-}
-
 </style>

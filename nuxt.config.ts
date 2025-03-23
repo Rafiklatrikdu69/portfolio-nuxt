@@ -18,7 +18,8 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     '@nuxtjs/google-fonts',
     '@nuxt/image',
-    '@pinia/nuxt'    
+    '@pinia/nuxt'  ,
+    'nuxt-highcharts'
   ],
   googleFonts: {
     families: {

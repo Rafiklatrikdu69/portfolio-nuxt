@@ -1,16 +1,20 @@
-<script setup>
+<script async setup>
+import { ref } from 'vue';
+
 definePageMeta({
   layout: 'nav',
 });
-const isLoading = ref(true);
 
-const items = [];
-const {data: competences} = await useFetch('/api/competences');
-competences.value.map(competences => {
-  items.push({
-    label: competences.name,
-    content: competences.niveau,
-    projet: competences.projet
+const isLoading = ref(true);
+const items = ref([]);
+
+const { data: competences } = await useFetch('/api/competences');
+
+competences.value.forEach(competence => {
+  items.value.push({
+    label: competence.name,
+    content: competence.niveau,
+    projet: competence.projet,
   });
 });
 
@@ -19,7 +23,7 @@ isLoading.value = false;
 
 <template>
   <div v-if="!isLoading">
-    <div class="flex flex-col min-h-screen  from-white-50 to-white dark:from-gray-900 dark:to-gray-800 p-0">
+    <div class="flex flex-col min-h-screen bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800 p-0">
       <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <div class="mb-12 text-center pt-4">
           <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -30,11 +34,8 @@ isLoading.value = false;
           </p>
         </div>
 
-        <div class="max-w-full  mx-auto">
-          <UAccordion
-              :items="items"
-              class="overflow-hidden "
-          >
+        <div class="max-w-full mx-auto">
+          <UAccordion :items="items" class="overflow-hidden">
             <template #item="{ item }">
               <div class="flex flex-col gap-6">
                 <!-- Skills Section -->
@@ -42,14 +43,16 @@ isLoading.value = false;
                   <div
                       v-for="c in item.content"
                       :key="c.id"
-                      class="bg-gray-50 dark:bg-gray-900 rounded-lg p-8 transition-all duration-300 hover:shadow-md"
+                      class="bg-gray-50 dark:bg-gray-900 rounded-lg p-8 shadow-md transition-all duration-300 hover:shadow-lg flex items-center justify-center"
                   >
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 text-center">
-                      {{ c.name }}
-                    </h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-center leading-relaxed">
-                      {{ c.description }}
-                    </p>
+                    <div class="text-center">
+                      <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                        {{ c.name }}
+                      </h3>
+                      <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        {{ c.description }}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
@@ -66,15 +69,11 @@ isLoading.value = false;
                   </p>
 
                   <div
-                      class="grid gap-6 place-items-center"
-                      :class="{ 'sm:grid-cols-1': item.projet.length === 1, 'sm:grid-cols-2': item.projet.length === 2 }"
+                      class="grid gap-6 place-items-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
                   >
-                    <TheProjet
-                        v-for="p in item.projet"
-                        :key="p.id"
-                        :projet="p"
-                        class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-                    />
+                    <TheProjet v-for="p in item.projet"
+                               :key="p.id"
+                               :projet="p" class="w-full rounded-lg shadow-lg overflow-hidden" />
                   </div>
                 </div>
               </div>
@@ -84,7 +83,7 @@ isLoading.value = false;
       </main>
 
       <footer class="mt-auto">
-        <TheFooter/>
+        <TheFooter />
       </footer>
     </div>
   </div>

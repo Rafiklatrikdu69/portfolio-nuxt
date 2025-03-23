@@ -5,6 +5,7 @@ useSeoMeta({
 </script>
 
 <template>
+
    <NuxtLayout>
     <NuxtLoadingIndicator />
       <NuxtPage />
