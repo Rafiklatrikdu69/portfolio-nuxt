@@ -2,8 +2,8 @@ export default defineNuxtConfig({
   app: {
     head: {
       meta: [
-        { name: 'description', content: 'Description de votre site web.' },
-        { name: 'keywords', content: 'mots-clés, pertinents, pour, votre, site' },
+        { name: 'description', content: 'My Portfolio.' },
+        { name: 'keywords', content: '' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'google-adsense-account', content: 'ca-pub-7357393740215228' }
       ],
