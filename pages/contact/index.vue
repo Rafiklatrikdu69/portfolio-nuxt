@@ -47,6 +47,11 @@
         </div>
       </div>
 
+      <!-- reCAPTCHA Widget -->
+      <div class="mt-6">
+        <div id="recaptcha-container" class="g-recaptcha" data-sitekey="6LdwcAQrAAAAAPoMm4Oeqsi1Y9jgYr0cx7BOd5UY" data-action="contact"></div>
+      </div>
+
       <!-- Submit Button -->
       <div class="mt-10">
         <button type="submit" :disabled="loading" class="block w-full rounded-md bg-blue-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-50">
@@ -63,8 +68,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import useGoogleRecaptcha from "~/composables/useGoogleRecaptcha.js";
+
 
 definePageMeta({
   layout: 'nav'
@@ -78,61 +82,88 @@ const formData = ref({
   message: ''
 });
 
+const recaptchaToken = ref(null);
+
+// Utiliser useHead pour ajouter le script reCAPTCHA dans la section <head>
+useHead({
+  script: [
+    {
+      src: 'https://www.google.com/recaptcha/api.js',
+      async: true,
+      defer: true,
+      onload: setupRecaptcha
+    }
+  ]
+});
+
+function setupRecaptcha() {
+  window.grecaptcha.ready(() => {
+    window.grecaptcha.execute('6LdwcAQrAAAAAPoMm4Oeqsi1Y9jgYr0cx7BOd5UY', { action: 'contact' }).then((token) => {
+      recaptchaToken.value = token;
+    });
+  });
+}
+
 async function handleSubmit() {
-  console.log("Captcha");
-  const { executeRecaptcha } = useGoogleRecaptcha();
+  if (!recaptchaToken.value) {
+    alert("Please complete the reCAPTCHA.");
+    return;
+  }
 
-  const recaptcha = async () => {
-    return await executeRecaptcha("contact"); // Create a reCAPTCHA token
-  };
+  console.log("Starting form submission with reCAPTCHA token:", recaptchaToken.value);
 
-  const token = await recaptcha();
-  console.log(token);
+  try {
+    const response = await $fetch('/api/verify-recaptcha', {
+      method: 'POST',
+      body: JSON.stringify({ token: recaptchaToken.value }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    console.log(response)
+    if (response.statusCode === 400) {
+      throw new Error('Invalid reCAPTCHA');
+    }
 
-  if (!token) {
-    alert("Invalid reCAPTCHA. Please try again.");
-  } else {
-    try {
-      loading.value = true;
-      const htmlContent = `
-        <div style="padding: 20px; background-color: #f5f5f5; font-family: sans-serif;">
-          <h1 style="color: #333;">Nouveau message de ${formData.value.firstName} ${formData.value.lastName}</h1>
-          <div style="margin-top: 20px;">
-            <p><strong>Nom:</strong> ${formData.value.firstName} ${formData.value.lastName}</p>
-            <p><strong>Email:</strong> ${formData.value.email}</p>
-            <p><strong>Message:</strong></p>
-            <div style="background-color: white; padding: 15px; border-radius: 5px; margin-top: 10px;">
-              ${formData.value.message.replace(/\n/g, '<br>')}
-            </div>
+    loading.value = true;
+    const htmlContent = `
+      <div style="padding: 20px; background-color: #f5f5f5; font-family: sans-serif;">
+        <h1 style="color: #333;">Nouveau message de ${formData.value.firstName} ${formData.value.lastName}</h1>
+        <div style="margin-top: 20px;">
+          <p><strong>Nom:</strong> ${formData.value.firstName} ${formData.value.lastName}</p>
+          <p><strong>Email:</strong> ${formData.value.email}</p>
+          <p><strong>Message:</strong></p>
+          <div style="background-color: white; padding: 15px; border-radius: 5px; margin-top: 10px;">
+            ${formData.value.message.replace(/\n/g, '<br>')}
           </div>
         </div>
-      `;
+      </div>
+    `;
 
-      const response = await $fetch('/api/email', {
-        method: 'POST',
-        body: {
-          email: formData.value.email,
-          html: htmlContent,
-          subject: `Contact from ${formData.value.firstName} ${formData.value.lastName}`
-        }
-      });
-
-      if (response.error) {
-        throw new Error(response.error.message);
+    const emailResponse = await $fetch('/api/email', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: formData.value.email,
+        html: htmlContent,
+        subject: `Contact from ${formData.value.firstName} ${formData.value.lastName}`,
+      }),
+      headers: {
+        'Content-Type': 'application/json'
       }
+    });
 
-      alert('Message envoyé avec succès!');
-      formData.value = {
-        firstName: '',
-        lastName: '',
-        email: '',
-        message: ''
-      };
-    } catch (error) {
-      alert(`Erreur lors de l'envoi : ${error.message}`);
-    } finally {
-      loading.value = false;
-    }
+    alert('Message envoyé avec succès!');
+    formData.value = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      message: ''
+    };
+  } catch (error) {
+    console.error("Error during form submission:", error);
+    alert(`Erreur lors de l'envoi : ${error.message}`);
+  } finally {
+    loading.value = false;
   }
 }
 </script>

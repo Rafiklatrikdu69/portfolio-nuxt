@@ -16,6 +16,7 @@ export default () => {
          */
         await recaptchaInstance?.recaptchaLoaded()
         const token = await recaptchaInstance?.executeRecaptcha(action)
+        console.log(action)
         const headerOptions = {
             headers: {
                 'google-recaptcha-token': token
