@@ -49,7 +49,8 @@
 
       <!-- reCAPTCHA Widget -->
       <div class="mt-6">
-        <div id="recaptcha-container" class="g-recaptcha" data-sitekey="6LdwcAQrAAAAAPoMm4Oeqsi1Y9jgYr0cx7BOd5UY" data-action="contact"></div>
+        <div id="recaptcha-container"></div>
+        <div v-if="recaptchaError" class="text-red-500 mt-2">{{ recaptchaError }}</div>
       </div>
 
       <!-- Submit Button -->
@@ -68,13 +69,14 @@
 </template>
 
 <script setup>
-
+import { ref, onMounted } from 'vue';
 
 definePageMeta({
   layout: 'nav'
 });
 
 const loading = ref(false);
+const recaptchaError = ref('');
 const formData = ref({
   firstName: '',
   lastName: '',
@@ -84,25 +86,33 @@ const formData = ref({
 
 const recaptchaToken = ref(null);
 
-// Utiliser useHead pour ajouter le script reCAPTCHA dans la section <head>
-useHead({
-  script: [
-    {
-      src: 'https://www.google.com/recaptcha/api.js',
-      async: true,
-      defer: true,
-      onload: setupRecaptcha
-    }
-  ]
-});
+onMounted(() => {
+  // Charger le script reCAPTCHA avec le callback onload
+  const script = document.createElement('script');
+  script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
+  script.async = true;
+  script.defer = true;
+  document.head.appendChild(script);
 
-function setupRecaptcha() {
-  window.grecaptcha.ready(() => {
-    window.grecaptcha.execute('6LdwcAQrAAAAAPoMm4Oeqsi1Y9jgYr0cx7BOd5UY', { action: 'contact' }).then((token) => {
-      recaptchaToken.value = token;
-    });
-  });
-}
+  window.onloadCallback = function() {
+    if (window.grecaptcha) {
+      try {
+        window.grecaptcha.render('recaptcha-container', {
+          sitekey: `${process.env.KEY_RECAP_PUBLIC}`,
+          callback: (response) => {
+            recaptchaToken.value = response;
+          }
+        });
+      } catch (error) {
+        console.error("Erreur lors du rendu de reCAPTCHA:", error);
+        recaptchaError.value = "Erreur lors du rendu de reCAPTCHA. Veuillez réessayer.";
+      }
+    } else {
+      console.error("reCAPTCHA n'est pas prêt ou n'a pas pu être chargé.");
+      recaptchaError.value = "reCAPTCHA n'est pas prêt ou n'a pas pu être chargé.";
+    }
+  };
+});
 
 async function handleSubmit() {
   if (!recaptchaToken.value) {
@@ -120,7 +130,7 @@ async function handleSubmit() {
         'Content-Type': 'application/json'
       }
     });
-    console.log(response)
+    console.log(response);
     if (response.statusCode === 400) {
       throw new Error('Invalid reCAPTCHA');
     }

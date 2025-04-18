@@ -45,7 +45,10 @@ export default defineNuxtConfig({
     define: {
       'process.env.APP_URL': JSON.stringify(process.env.SUPABASE_URL),
       'process.env.APP_KEY': JSON.stringify(process.env.SUPABASE_KEY),
-      'process.env.GIT_TOKEN': JSON.stringify(process.env.GIT_TOKEN)
+      'process.env.GIT_TOKEN': JSON.stringify(process.env.GIT_TOKEN),
+      'process.env.KEY_RECAP_PUBLIC': JSON.stringify(process.env.KEY_RECAP_PUBLIC),
+      'process.env.KEY_RECAP_PRIVATE': JSON.stringify(process.env.KEY_RECAP_PRIVATE)
+
     }
   },
   redirectOptions: {
