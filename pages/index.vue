@@ -56,7 +56,7 @@ const redirectToTechnologies = () => {
             </div>
             <div class="space-y-4 pt-8">
               <img
-                  src="public/img/web.jpeg"
+                  src="public/img/starterpackrafik.png"
                   alt="Web development"
                   class="rounded-xl object-cover w-full h-48 md:h-64 shadow-lg hover:shadow-xl transition-shadow duration-300"
               />
