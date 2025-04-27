@@ -53,7 +53,7 @@ const rows = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col min-h-screen  bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800 p-0">
     <main class="flex-grow from-white-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <div class="mb-12 text-center pt-4">

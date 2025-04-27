@@ -13,7 +13,7 @@ const redirectToTechnologies = () => {
 </script>
 
 <template>
-  <div class="min-h-screen from-white-50 to-white dark:from-gray-900 dark:to-gray-800 py-10 pt-16 p-6">
+  <div class="flex flex-col min-h-screen bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800 p-0 py-10 pt-16 p-6">
     <main class="max-w-7xl mx-auto px-6 md:px-12 xl:px-0 py-12">
       <!-- Hero Section -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">

@@ -1,5 +1,5 @@
 <template>
-  <div class="p-16 flex flex-col min-h-screen from-white-50 to-white dark:from-gray-900 dark:to-gray-800">
+  <div class="p-16 flex flex flex-col min-h-screen bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800">
     <div class="py-12 sm:py-16 ">
       <div class="mx-auto max-w-5xl px-4 sm:px-6">
         <div class="mx-auto max-w-xl lg:mx-0">
