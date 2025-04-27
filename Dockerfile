@@ -1,8 +1,8 @@
-FROM node:20-alpine
+FROM node:23-alpine
 
 WORKDIR /app
 
-COPY package.json ./
+COPY package*.json ./
 
 RUN npm install
 
@@ -11,4 +11,4 @@ COPY . .
 EXPOSE 3000
 
 RUN npm run build
-CMD ["node",".output/server/index.mjs"]
+CMD [ "npm", "run", "start" ]
