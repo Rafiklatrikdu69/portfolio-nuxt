@@ -3,14 +3,13 @@
     <div class="max-w-7xl mx-auto px-6 py-8">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
         <div class="space-y-4">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">About me</h3>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">À propos de moi</h3>
           <p class="text-gray-600 dark:text-gray-400">
-            Full-stack developer passionate about creating innovative and efficient web applications.
+            Développeur full-stack passionné par la création d'applications web innovantes et efficaces.
           </p>
         </div>
-
         <div class="space-y-4">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Quick links</h3>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Liens rapides</h3>
           <ul class="space-y-2">
             <li>
               <NuxtLink to="/technologies" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
@@ -19,12 +18,12 @@
             </li>
             <li>
               <NuxtLink to="/projets" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                Projects
+                Projets
               </NuxtLink>
             </li>
             <li>
               <NuxtLink to="/competences" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                Skill
+                Compétences
               </NuxtLink>
             </li>
             <li>
@@ -34,9 +33,8 @@
             </li>
           </ul>
         </div>
-
         <div class="space-y-4">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Follow me</h3>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Suivez-moi</h3>
           <div class="flex space-x-4">
             <a href="https://github.com/Rafiklatrikdu69"
                target="_blank"
@@ -62,10 +60,9 @@
           </div>
         </div>
       </div>
-
       <div class="pt-8 border-t border-gray-200 dark:border-gray-800">
         <p class="text-center text-gray-600 dark:text-gray-400">
-          &copy; {{ new Date().getFullYear() }} Rafiki. All right Reserved.
+          &copy; {{ new Date().getFullYear() }} Rafiki. Tous droits réservés.
         </p>
       </div>
     </div>

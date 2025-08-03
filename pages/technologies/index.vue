@@ -2,34 +2,28 @@
 definePageMeta({
   layout: 'nav'
 })
-
 const columns = [
   {
     key: 'title',
-    label: 'Langages - Tools - Storage'
+    label: 'Langages - Outils - Stockage'
   },
   {
     key: 'name',
-    label: 'Name'
+    label: 'Nom'
   }
 ]
-
 const page = ref(1)
 const pageCount = 3
-
 const { data: cat_technos } = await useFetch('/api/categories/technologies')
 const selectedTab = ref(1)
-
-// Animation du flou seulement pour la table
+// Animation du flou uniquement pour le tableau
 const tableBlur = ref(true)
-
 // Initialiser avec un flou, puis l'enlever après le premier rendu
 onMounted(() => {
   setTimeout(() => {
     tableBlur.value = false
   }, 800)
 })
-
 // Ajouter un flou lors des changements d'onglet ou de page
 watch(selectedTab, () => {
   page.value = 1
@@ -38,37 +32,33 @@ watch(selectedTab, () => {
     tableBlur.value = false
   }, 800)
 })
-
 watch(page, () => {
   tableBlur.value = true
   setTimeout(() => {
     tableBlur.value = false
   }, 600)
 })
-
 const rows = computed(() => {
   const category = cat_technos.value.find(cat => cat.id === selectedTab.value)
   return category?.technologie.slice((page.value - 1) * pageCount, (page.value) * pageCount)
 })
 </script>
-
 <template>
-  <div class="flex flex-col min-h-screen  bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800 p-0">
+  <div class="flex flex-col min-h-screen bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800 p-0">
     <main class="flex-grow from-white-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <div class="mb-12 text-center pt-4">
           <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            My Technologies
+            Mes Technologies
           </h1>
           <p class="text-lg text-gray-600 dark:text-gray-300">
-            Explore the tools and technologies I work with
+            Explorez les outils et technologies avec lesquels je travaille
           </p>
         </div>
-
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg">
           <div class="flex flex-wrap border-b border-gray-200 dark:border-gray-700">
             <div class="w-full">
-              <nav class="flex space-x-4 px-4 flex-wrap" aria-label="Tabs">
+              <nav class="flex space-x-4 px-4 flex-wrap" aria-label="Onglets">
                 <button
                     v-for="cat in cat_technos"
                     :key="cat.id"
@@ -89,7 +79,6 @@ const rows = computed(() => {
               </nav>
             </div>
           </div>
-
           <div class="p-4 sm:p-6">
             <section
                 v-for="cat in cat_technos"
@@ -97,7 +86,7 @@ const rows = computed(() => {
                 v-show="selectedTab === cat.id"
                 class="space-y-6"
             >
-              <!-- Container pour la table avec l'animation de flou -->
+              <!-- Conteneur pour le tableau avec l'animation de flou -->
               <div class="overflow-hidden bg-white dark:bg-gray-900 rounded-lg shadow">
                 <UTable
                     :rows="rows"
@@ -116,7 +105,6 @@ const rows = computed(() => {
                   </template>
                 </UTable>
               </div>
-
               <div class="flex justify-end border-t border-gray-200 dark:border-gray-700 pt-4">
                 <UPagination
                     v-model="page"
@@ -130,42 +118,34 @@ const rows = computed(() => {
         </div>
       </div>
     </main>
-
     <footer class="mt-auto">
       <TheFooter />
     </footer>
   </div>
 </template>
-
 <style scoped>
 .dark {
   color-scheme: dark;
 }
-
 @media (prefers-color-scheme: dark) {
   .dark {
     color-scheme: dark;
   }
 }
-
 .tab-transition {
   transition: all 0.1s ease-in-out;
 }
-
 .image-hover {
   transition: transform 0.1s ease-in-out;
 }
-
 .image-hover:hover {
   transform: scale(1.05);
 }
-
-/* Animation de flou pour la table uniquement */
+/* Animation de flou pour le tableau uniquement */
 .table-blur {
   filter: blur(5px);
   opacity: 0.7;
 }
-
 /* Transition pour l'animation de flou */
 .transition-all {
   transition: filter 0.2s ease, opacity 0.2s ease;

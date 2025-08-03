@@ -1,18 +1,19 @@
 <script setup>
-defineProps(['projet'])
-import { useToggleStore } from '../store/toggle'
+defineProps(['projet']);
+import { useToggleStore } from '../store/toggle';
+
 const isLoading = ref(true);
 const hasError = ref(false);
+const toggle = useToggleStore();
+const router = useRoute();
 
-const toggle = useToggleStore()
-const router = useRoute()
 const toggleStoreLink = () => {
   if (router.name === 'competences') {
-    if (toggle.toggle === 'Return to the page project') {
+    if (toggle.toggle === 'Retour à la page projet') {
       toggle.toggleLinkPage();
     }
   } else if (router.name === 'projets') {
-    if (toggle.toggle === 'Return to the page skill') {
+    if (toggle.toggle === 'Retour à la page compétence') {
       toggle.toggleLinkPage();
     }
   }
@@ -51,7 +52,6 @@ onMounted(() => {
       <div v-if="isLoading" class="skeleton-container">
         <USkeleton class="skeleton" />
       </div>
-
       <NuxtLink
           v-if="!isLoading"
           :to="`/projets/${projet.id}`"
@@ -62,7 +62,7 @@ onMounted(() => {
           <NuxtImg
               ref="imgRef"
               :src="`img/${projet.image}`"
-              alt="Project Image"
+              alt="Image du projet"
               loading="lazy"
               @load="onImageLoad"
               @error="onImageError"
@@ -70,9 +70,8 @@ onMounted(() => {
               :class="{ 'img-loaded': !isLoading && !hasError }"
           />
         </div>
-
         <div class="project-overlay" :class="{ 'overlay-visible': isHovered }">
-          <span class="view-project ">View Project</span>
+          <span class="view-project">Voir le projet</span>
         </div>
       </NuxtLink>
     </div>
@@ -172,7 +171,7 @@ onMounted(() => {
   font-size: 1.2rem;
   padding: 10px 20px;
   border: 2px solid white;
-  color:white;
+  color: white;
   border-radius: 30px;
   transform: translateY(20px);
   opacity: 0;

@@ -1,35 +1,31 @@
 <template>
-  <div class="isolate px-6 py-24 sm:py-32 lg:px-8  bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800">
-    <!-- Background decoration -->
+  <div class="isolate px-6 py-24 sm:py-32 lg:px-8 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <!-- Décoration de fond -->
     <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]" aria-hidden="true">
       <div class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" />
     </div>
-
-    <!-- Main content -->
+    <!-- Contenu principal -->
     <div class="mx-auto max-w-2xl text-center">
-      <h2 class="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">Contact me</h2>
-      <p class="mt-2 text-lg/8">Send your feedback to my portfolio :)</p>
+      <h2 class="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">Contactez-moi</h2>
+      <p class="mt-2 text-lg/8">Envoyez vos commentaires sur mon portfolio :)</p>
     </div>
-
-    <!-- Contact form -->
+    <!-- Formulaire de contact -->
     <form @submit.prevent="handleSubmit" class="mx-auto mt-16 max-w-xl sm:mt-20">
       <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-        <!-- First Name -->
+        <!-- Prénom -->
         <div>
-          <label for="first-name" class="block text-sm/6 font-semibold">First name</label>
+          <label for="first-name" class="block text-sm/6 font-semibold">Prénom</label>
           <div class="mt-2.5">
             <input v-model="formData.firstName" type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md px-3.5 py-2 text-base outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600" />
           </div>
         </div>
-
-        <!-- Last Name -->
+        <!-- Nom -->
         <div>
-          <label for="last-name" class="block text-sm/6 font-semibold">Last name</label>
+          <label for="last-name" class="block text-sm/6 font-semibold">Nom</label>
           <div class="mt-2.5">
             <input v-model="formData.lastName" type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md px-3.5 py-2 text-base outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600" />
           </div>
         </div>
-
         <!-- Email -->
         <div class="sm:col-span-2">
           <label for="email" class="block text-sm/6 font-semibold">Email</label>
@@ -37,7 +33,6 @@
             <input v-model="formData.email" type="email" name="email" id="email" autocomplete="email" class="block w-full rounded-md px-3.5 py-2 text-base outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600" />
           </div>
         </div>
-
         <!-- Message -->
         <div class="sm:col-span-2">
           <label for="message" class="block text-sm/6 font-semibold">Message</label>
@@ -46,23 +41,20 @@
           </div>
         </div>
       </div>
-
-      <!-- reCAPTCHA Widget -->
+      <!-- Widget reCAPTCHA -->
       <div class="mt-6">
         <div id="recaptcha-container"></div>
         <div v-if="recaptchaError" class="text-red-500 mt-2">{{ recaptchaError }}</div>
       </div>
-
-      <!-- Submit Button -->
+      <!-- Bouton de soumission -->
       <div class="mt-10">
         <button type="submit" :disabled="loading" class="block w-full rounded-md bg-blue-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-50">
-          {{ loading ? 'Sending...' : 'Send' }}
+          {{ loading ? 'Envoi en cours...' : 'Envoyer' }}
         </button>
       </div>
     </form>
   </div>
-
-  <!-- Footer -->
+  <!-- Pied de page -->
   <footer class="mt-auto">
     <TheFooter />
   </footer>
@@ -83,7 +75,6 @@ const formData = ref({
   email: '',
   message: ''
 });
-
 const recaptchaToken = ref(null);
 
 onMounted(() => {
@@ -116,11 +107,11 @@ onMounted(() => {
 
 async function handleSubmit() {
   if (!recaptchaToken.value) {
-    alert("Please complete the reCAPTCHA.");
+    alert("Veuillez compléter le reCAPTCHA.");
     return;
   }
 
-  console.log("Starting form submission with reCAPTCHA token:", recaptchaToken.value);
+  console.log("Début de la soumission du formulaire avec le token reCAPTCHA:", recaptchaToken.value);
 
   try {
     const response = await $fetch('/api/verify-recaptcha', {
@@ -130,12 +121,15 @@ async function handleSubmit() {
         'Content-Type': 'application/json'
       }
     });
+
     console.log(response);
+
     if (response.statusCode === 400) {
-      throw new Error('Invalid reCAPTCHA');
+      throw new Error('reCAPTCHA invalide');
     }
 
     loading.value = true;
+
     const htmlContent = `
       <div style="padding: 20px; background-color: #f5f5f5; font-family: sans-serif;">
         <h1 style="color: #333;">Nouveau message de ${formData.value.firstName} ${formData.value.lastName}</h1>
@@ -155,7 +149,7 @@ async function handleSubmit() {
       body: JSON.stringify({
         email: formData.value.email,
         html: htmlContent,
-        subject: `Contact from ${formData.value.firstName} ${formData.value.lastName}`,
+        subject: `Contact de ${formData.value.firstName} ${formData.value.lastName}`,
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -170,7 +164,7 @@ async function handleSubmit() {
       message: ''
     };
   } catch (error) {
-    console.error("Error during form submission:", error);
+    console.error("Erreur lors de la soumission du formulaire:", error);
     alert(`Erreur lors de l'envoi : ${error.message}`);
   } finally {
     loading.value = false;

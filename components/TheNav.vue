@@ -2,15 +2,13 @@
   <UContainer class="navbar fixed top-0 left-0 max-w-none w-full flex items-center justify-between px-4 py-2 shadow-md">
     <div class="flex items-center justify-center gap-2">
       <NuxtLink to="/">
-        <NuxtImg  src="img/logo.png" class="image" alt="logo"></NuxtImg>
+        <NuxtImg src="img/logo.png" class="image" alt="logo"></NuxtImg>
       </NuxtLink>
-      <UToggle  v-model="isDark"  :on-icon="iconOn" :off-icon="iconOff" size="lg"/>
+      <UToggle v-model="isDark" :on-icon="iconOn" :off-icon="iconOff" size="lg"/>
     </div>
-
     <UButton @click="toggleMenu()" class="block md:hidden">
       <Icon :name="isMenuOpen ? 'pajamas:close' : 'pajamas:hamburger'" class="w-4 h-4 mt-1"/>
     </UButton>
-
     <div class="hidden md:flex">
       <UHorizontalNavigation :links="horizontalLinks"/>
     </div>
@@ -21,13 +19,14 @@
 </template>
 
 <script setup>
-
 const isMenuOpen = ref(false);
-const  iconOn = ref('i-heroicons-moon');
+const iconOn = ref('i-heroicons-moon');
 const iconOff = ref('i-heroicons-sun');
+
 const toggleMenu = () => (isMenuOpen.value = !isMenuOpen.value);
 
 const colorMode = useColorMode();
+
 const isDark = computed({
   get() {
     return colorMode.value === 'dark';
@@ -55,10 +54,10 @@ watch(isDark, (newVal) => {
 });
 
 const horizontalLinks = [
-{ label: "About", icon: 'i-heroicons-home', to: "/" },
-{ label: "Technologies", to: "/technologies" },
-{ label: "Projects", to: "/projets" },
-  { label: "Skill", to: "/competences" },
+  { label: "Accueil", icon: 'i-heroicons-home', to: "/" },
+  { label: "Technologies", to: "/technologies" },
+  { label: "Projets", to: "/projets" },
+  { label: "Compétences", to: "/competences" },
   { label: "Blog", to: "/blog" },
   { label: "CV", to: "/cv" },
   { label: "Contact", to: "/contact" },
@@ -68,7 +67,6 @@ const verticalLinks = horizontalLinks.map(link => ({
   ...link,
   click: () => isMenuOpen.value = !isMenuOpen.value
 }));
-
 </script>
 
 <style scoped>
@@ -76,7 +74,8 @@ const verticalLinks = horizontalLinks.map(link => ({
   width: 50px;
   height: 50px;
 }
-.image:hover{
+
+.image:hover {
   cursor: pointer;
 }
 
