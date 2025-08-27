@@ -2,12 +2,14 @@
 definePageMeta({
   layout: 'nav',
 });
+
 import { marked } from 'marked';
 
 const route = useRoute();
 const router = useRouter();
 const { id } = route.params;
-const { data: detail_post } = await useFetch(`/api/post/${id}/detail`)
+const { data: detail_post } = await useFetch(`/api/post/${id}/detail`);
+
 marked.setOptions({
   breaks: true,
   gfm: true,
@@ -15,31 +17,34 @@ marked.setOptions({
 
 const isLoading = ref(true);
 const errorMessage = ref(null);
-if (!detail_post.value.detail_post[0]?.url_readme) {
+
+if (!detail_post.value?.detail_post[0]?.url_readme) {
   router.push('/blog');
 }
 
 const { data: readme, pending, error } = await useFetch(
   `https://api.github.com/repos/${detail_post.value.detail_post[0].url_readme}`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.GIT_TOKEN}`,
-        Accept: "application/vnd.github+json",
-      },
-      onResponse() {
-        isLoading.value = false;
-      },
-      onResponseError(error) {
-        errorMessage.value = error.message;
-        isLoading.value = false;
-      }
+  {
+    headers: {
+      Authorization: `Bearer ${process.env.GIT_TOKEN}`,
+      Accept: "application/vnd.github+json",
+    },
+    onResponse() {
+      isLoading.value = false;
+    },
+    onResponseError({ error }) {
+      errorMessage.value = error.message;
+      isLoading.value = false;
     }
+  }
 );
 
 const renderedReadme = computed(() => {
   if (readme.value?.content) {
-    const base64Content = readme.value.content;
-    const decodedContent = atob(base64Content);
+    // Remplacer les caractères URL-safe du Base64
+    const base64Content = readme.value.content.replace(/_/g, '/').replace(/-/g, '+');
+    // Décoder en UTF-8
+    const decodedContent = decodeURIComponent(escape(atob(base64Content)));
     return marked(decodedContent);
   }
   return '';
@@ -58,32 +63,23 @@ const renderedReadme = computed(() => {
         </h1>
       </div>
 
-      <div
-          v-if="pending"
-          class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 flex justify-center items-center min-h-[200px]"
-      >
+      <div v-if="pending" class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 flex justify-center items-center min-h-[200px]">
         <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
       </div>
 
-      <div
-          v-else-if="error"
-          class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-xl p-8 text-center"
-      >
+      <div v-else-if="error" class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-xl p-8 text-center">
         <p class="text-red-600 dark:text-red-400">
           Failed to load README: {{ errorMessage || 'Unknown error occurred' }}
         </p>
         <button
-            @click="$router.go(-1)"
-            class="mt-4 px-4 py-2 bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-200 rounded-md hover:bg-red-200 dark:hover:bg-red-700 transition-colors"
+          @click="$router.go(-1)"
+          class="mt-4 px-4 py-2 bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-200 rounded-md hover:bg-red-200 dark:hover:bg-red-700 transition-colors"
         >
           Go Back
         </button>
       </div>
 
-      <div
-          v-else-if="renderedReadme"
-          class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden"
-      >
+      <div v-else-if="renderedReadme" class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
         <div class="border-b border-gray-200 dark:border-gray-700 px-6 py-4">
           <div class="flex items-center space-x-2 text-gray-600 dark:text-gray-400">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16">
@@ -92,11 +88,7 @@ const renderedReadme = computed(() => {
             <span>README.md</span>
           </div>
         </div>
-
-        <div
-            class="markdown-body p-6"
-            v-html="renderedReadme"
-        ></div>
+        <div class="markdown-body p-6" v-html="renderedReadme"></div>
       </div>
     </main>
   </div>
