@@ -1,5 +1,3 @@
-Voici la traduction fidèle de votre texte en français, sans ajout :
-
 ---
 
 # Portfolio Personnel
