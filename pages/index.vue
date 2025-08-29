@@ -23,7 +23,7 @@ const { data: experiences } = await useAsyncData('experiences', () =>
             Développeur Full-stack <span class="text-blue-600 dark:text-blue-400">en entreprise</span>
           </h1>
           <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-            Salut ! Je suis Rafik (ou Rafiki pour les intimes) ! Étudiant en informatique, passionné de codage et toujours prêt à repousser les limites de ce qui est possible, je m'immerge dans la technologie pour transformer chaque idée en un projet concret.
+            Salut ! Je suis Rafik ! Étudiant en informatique, passionné de codage et toujours prêt à repousser les limites de ce qui est possible, je m'immerge dans la technologie pour transformer chaque idée en un projet concret.
           </p>
           <a href="https://bff.ecoindex.fr/redirect/?url=https://portfolio-rafiki.vercel.app/" target="_blank">
             <img src="https://bff.ecoindex.fr/badge/?&url=https://portfolio-rafiki.vercel.app/" alt="Badge Ecoindex"/>
